@@ -10,14 +10,5 @@
       "id": 1
     }
   ],
-  "todos": [
-    {
-      "title": "Estudar React",
-      "description": "Preciso estudar react para fazer o capstone semana que vem.",
-      "userId": 1,
-      "createdAt": "Thu, 10 Mar 2022 16:27:58 GMT",
-      "completed": false,
-      "id": 1
-    }
-  ]
+  "todos": []
 }

@@ -14,8 +14,8 @@ app.use(jsonServer.bodyParser);
 
 app.use(cors());
 
-app.post("/signup", CustomMiddlewares.signup);
-app.post("/todos", CustomMiddlewares.todos);
+app.use("/signup", CustomMiddlewares.signup);
+app.use("/todos", CustomMiddlewares.todos);
 
 app.use(rules);
 app.use(auth);

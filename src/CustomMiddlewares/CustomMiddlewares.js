@@ -10,15 +10,24 @@ class CustomMiddlewares {
   }
 
   static todos(req, res, next) {
-    if ("title" in req.body && "description" in req.body) {
-      console.log("aqui");
-      req.body.createdAt = new Date().toUTCString();
+    if (req.method === "POST") {
+      if ("title" in req.body && "description" in req.body) {
+        req.body.createdAt = new Date().toUTCString();
 
-      req.body.completed = false;
+        req.body.completed = false;
 
-      next();
+        next();
+      } else {
+        res.status(400).jsonp(errors.todos.post);
+      }
+    } else if (req.method === "PATCH") {
+      if ("id" in req.body || "userId" in req.body || "createdAt" in req.body) {
+        res.status(400).jsonp(errors.todos.patch);
+      } else {
+        next();
+      }
     } else {
-      res.status(400).jsonp(errors.todos);
+      next();
     }
   }
 }
