@@ -1,24 +1,91 @@
-# json-server-base
+# Todos List
 
-Esse é o repositório com a base de JSON-Server + JSON-Server-Auth já configurada, feita para ser usada no desenvolvimento das API's nos Capstones do Q2.
+This repository in configured with JSON Server and JSON Server Auth to setup a fake API. It permits users signup, signin and, after authentication, register of todos in a todo list.
 
 ## Endpoints
 
-Assim como a documentação do JSON-Server-Auth traz (https://www.npmjs.com/package/json-server-auth), existem 3 endpoints que podem ser utilizados para cadastro e 2 endpoints que podem ser usados para login.
+The base URL described below will be used as a prefix for all endpoints of the API.
 
-### Cadastro
+Base URL:
 
-POST /register <br/>
-POST /signup <br/>
-POST /users
+### User Signup
 
-Qualquer um desses 3 endpoints irá cadastrar o usuário na lista de "Users", sendo que os campos obrigatórios são os de email e password.
-Você pode ficar a vontade para adicionar qualquer outra propriedade no corpo do cadastro dos usuários.
+**`POST /signup`**
 
+The method POST in the /signup endpoint will register an user on the API data base, permiting later signin and interactions with the API features.
 
-### Login
+**Requisition Format:**
 
-POST /login <br/>
-POST /signin
+```JSON
+//Method: POST
+//Endpoint: /singup
+//URI e.g.: /singup
+//Body(JSON):
 
-Qualquer um desses 2 endpoints pode ser usado para realizar login com um dos usuários cadastrados na lista de "Users"
+    {
+        "name": "Test User", //required
+        "age": "27", //optional
+        "gender": "Male", //optional
+        "email": "testuser@email.com", //required
+        "password": "197328@#TesteUser" //required
+    }
+```
+
+**Response Format:**
+
+```JSON
+//Status: 201 Created
+//Body(JSON):
+
+    {
+        "accessToken": "xxx.xxx.xxx",
+        "user": {
+                "id": 1,
+                "email": "testuser@email.com"
+            }
+    }
+```
+
+### User Signin
+
+**`POST /signin`**
+
+The method POST in the /signin endpoint will login an user on the API, it's response will contain a JWT token wich should be used to interact with the authenticated routes.
+
+**Requisition Format:**
+
+```JSON
+//Method: POST
+//Endpoint: /signin
+//URI e.g.: /signin
+//Body(JSON):
+
+    {
+        "email": "testuser@email.com", //required
+        "password": "197328@#TesteUser" //required
+    }
+```
+
+**Response Format:**
+
+```JSON
+//Status: 200 OK
+//Body(JSON):
+{
+  "accessToken": "xxx.xxx.xxx",
+  "user": {
+    "id": 1,
+    "name": "Test User",
+    "age": "27", //optional
+    "gender": "Male", //optional
+    "email": "testuser@email.com",
+  }
+}
+```
+
+#### JWT payload
+
+The access token has the following claims:
+
+sub : the user id (as per the [JWT specs](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.2)).  
+email : the user email.

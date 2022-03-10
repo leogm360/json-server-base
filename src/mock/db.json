@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "email": "testuser@email.com",
+      "password": "$2a$10$iHSQyewgRf/t50FXbEFgLOMjMXQmCyFnGsARdSWFNp.5Hq4RTZYQK",
+      "name": "Test User",
+      "birthDate": "03/17/1995",
+      "age": "27",
+      "gender": "Male",
+      "id": 1
+    }
+  ],
+  "todos": [
+    {
+      "title": "Estudar React",
+      "description": "Preciso estudar react para fazer o capstone semana que vem.",
+      "userId": 1,
+      "createdAt": "Thu, 10 Mar 2022 16:27:58 GMT",
+      "completed": false,
+      "id": 1
+    }
+  ]
+}
